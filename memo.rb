@@ -10,8 +10,8 @@ while true
   if memo_type == "new"
     puts "拡張子を除いたファイル名を入力してください"
     new_memo_title = gets.chomp
-    puts "メモしたい内容を記入してください"
-    new_memo_text = gets.chop
+    puts "メモしたい内容を記入してください(Ctrl+Dで決定)"
+    new_memo_text = STDIN.read.chomp
     CSV.open(new_memo_title + ".csv", "w") do |csv|
       csv << [new_memo_text]
     end
@@ -28,7 +28,7 @@ while true
     puts "-------メモ一覧---------"
     Dir.foreach(".") do |item|
       next if item == "." or item == ".."
-      if item == ".DS_Store" or item == "memo.rb"
+      if item == ".DS_Store" or item == "memo.rb" or item == ".git"
       else
         puts item
       end
@@ -37,8 +37,8 @@ while true
     puts "上記より編集したいファイル名を拡張子を除いて入力してください"
     add_memo_title = gets.chomp
     CSV.open("#{add_memo_title}.csv", "a") do |csv|
-      puts "#{add_memo_title}.csvに追記する内容を記入してください"
-      add_memo_text = gets.chomp
+      puts "#{add_memo_title}.csvに追記する内容を記入してください(Ctrl+Dで決定)"
+      add_memo_text = STDIN.read.chomp
       csv << [add_memo_text]
     end
     puts ""
@@ -56,7 +56,7 @@ while true
     puts "-------メモ一覧---------"
     Dir.foreach(".") do |item|
       next if item == "." or item == ".."
-      if item == ".DS_Store" or item == "memo.rb"
+      if item == ".DS_Store" or item == "memo.rb" or item == ".git"
       else
         puts item
       end
