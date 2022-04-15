@@ -4,6 +4,7 @@ while true
   puts "new(新規でメモを作成)"
   puts "add(既存のメモに追記)"
   puts "read(既存のメモを表示)"
+  puts "end(メモを終了する)"
   memo_type = gets.chomp
 
   # ---新規メモを作成---
@@ -71,6 +72,9 @@ while true
     end
     puts "----------------------"
   
+  elsif memo_type == "end"
+    break
+
   else
     puts "'new','add','read'のいずれかを入力してください"
   end
